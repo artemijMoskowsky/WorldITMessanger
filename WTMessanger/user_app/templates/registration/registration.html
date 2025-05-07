@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Registration page {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+{% endblock %}
+
+
+{% block content %} 
+    <div class="center-div">
+        <form class="form-register">
+            <div class="dop-between">
+                <h1 class="reg-text">Реєстрація</h1>
+                <div class = "data-form">
+    
+                    <div class="center-data">
+                        <p class="text-data">Введіть ім'я</p>
+                        <input class = "data-input" type = "text">
+                    </div>
+    
+                    <div class="center-data">
+                        <p class="text-data">Введіть email</p>
+                        <input class = "data-input" type = "text">
+                    </div>
+    
+                    <div class="center-data">
+                        <p class="text-data">Введіть пароль</p>
+                        <input class = "data-input" type = "text">
+                    </div>
+    
+                    <div class="center-data">
+                        <p class="text-data">Підтвердіть пароль</p>
+                        <input class = "data-input" type = "text">
+                    </div>
+                </div>
+                <button class="confirmation-code">Надіслати код підтвердження</button>
+                
+            </div>
+           
+        </form>
+    </div>
+{% endblock %}

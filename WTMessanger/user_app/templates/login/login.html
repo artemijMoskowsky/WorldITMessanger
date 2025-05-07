@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Login page {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+{% endblock %}
+
+
+{% block content %} 
+    <div class="center-div">
+        <form class="form-login">
+            <div class="dop-between">
+                <h1 class="login-text">Аутентифікація</h1>
+                <div class = "data-login">
+    
+                    <div class="center-data">
+                        <p class="text-data">Введіть ім'я</p>
+                        <input class = "data-input" type = "text">
+                    </div>
+    
+                    <div class="center-data">
+                        <p class="text-data">Введіть email</p>
+                        <input class = "data-input" type = "text">
+                    </div>
+    
+                    <div class="center-data">
+                        <p class="text-data">Введіть пароль</p>
+                        <input class = "data-input" type = "text">
+                    </div>
+    
+                </div>
+                <button class="login-button">Аутентифікуватися</button>
+                <p class="qrcode-redirect">Більш швидкий спосіб аутентифікуватися - <a href="/user/user_qrcode">qrcode</a></p>
+            </div>
+           
+        </form>
+    </div>
+{% endblock %}

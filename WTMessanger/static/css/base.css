@@ -1,0 +1,94 @@
+*{
+    padding: 0px;
+    margin: 0px;   
+}
+
+body{
+    background-color: #FAF8FF;
+    font-family: 'Nunito';
+    overflow-x: hidden;
+}
+
+header{
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-header{
+    width: 95vw;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon{
+    width: 1vw;
+    height: 2vh;
+}
+
+.logo{
+    width: 7vw;
+    height: 2vh;
+}
+
+.icons-links{
+    width: 40vw;
+    height: 7vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.icon-dop{
+    display: flex;
+    gap: 0.5vw;
+    align-items: center;
+}
+
+.text-icons{
+    font-size: calc(0.5vw + 0.7vh);
+    text-decoration: none;
+    color: #070A1C;
+    font-weight: 900;
+}
+
+.div-logo{
+    width: 7vw;
+    height: 7vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.logout-button{
+    width: 4.5vw;
+    height: 4vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 0.1vw solid #543C52;
+    border-radius: 4vw;
+}
+
+.logout-icon{
+    width: 1vw;
+    height: 2vh;
+}
+
+.logout-text{
+    font-size: calc(0.5vw + 0.6vh);
+    color: #543C52;
+    font-weight: 600;
+}
+
+.padding-logout{
+    width: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
