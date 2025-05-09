@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Ласкаво просимо на головну сторінку!</h1>
+    {% if user.is_authenticated %}
+        <p>Привіт, {{ user.username }}!</p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Увійти</a> або <a href="{% url 'register' %}">Зареєструватися</a></p>
+    {% endif %}
+{% endblock %}
