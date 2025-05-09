@@ -12,34 +12,46 @@
 {% block content %} 
     <div class="center-div">
         <form class="form-register">
-            <div class="dop-between">
-                <h1 class="reg-text">Реєстрація</h1>
-                <div class = "data-form">
-    
-                    <div class="center-data">
-                        <p class="text-data">Введіть ім'я</p>
-                        <input class = "data-input" type = "text">
+            <div class="links-div">
+                <a href="/user/registration" class="reg-link">Рєєстрація</a>
+                <a href="/user/login" class="login-link">Авторизація</a>
+            </div>
+            
+            <p class="join-text">Приєднуйся до World IT</p>
+            <div class = "data-reg">
+
+                <div class="center-data noimg">
+                    <p class="text-data">Ім'я</p>
+                    <input class = "data-input noimg" type = "text" placeholder="Введи ім'я">
+                </div>
+
+                <div class="center-data noimg">
+                    <p class="text-data">Електронна пошта</p>
+                    <input class = "data-input noimg" type = "text" placeholder="you@example.com">
+                </div>
+
+                <div class="center-data">
+                    <p class="text-data">Пароль</p>
+                    <div class="input-eye">
+                        <input class = "data-input img" type = "text" placeholder="Введи пароль">
+                        <button class="button-eye" id="eyeButton">
+                            <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
+                        </button>
                     </div>
-    
-                    <div class="center-data">
-                        <p class="text-data">Введіть email</p>
-                        <input class = "data-input" type = "text">
-                    </div>
-    
-                    <div class="center-data">
-                        <p class="text-data">Введіть пароль</p>
-                        <input class = "data-input" type = "text">
-                    </div>
-    
-                    <div class="center-data">
-                        <p class="text-data">Підтвердіть пароль</p>
-                        <input class = "data-input" type = "text">
+                    
+                </div>
+
+                <div class="center-data">
+                    <p class="text-data">Підтверди пароль</p>
+                     <div class="input-eye">
+                        <input class = "data-input img" type = "text" placeholder="Повтори пароль">
+                        <button class="button-eye" id="eyeButton">
+                            <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
+                        </button>
                     </div>
                 </div>
-                <button class="confirmation-code">Надіслати код підтвердження</button>
-                
             </div>
-           
+            <button class="reg-button">Створити акаунт</button>
         </form>
     </div>
 {% endblock %}

@@ -10,34 +10,35 @@ body{
 }
 
 header{
-    width: 100vw;
-    height: 7vh;
+    width: calc(100vw + 2vh);
+    height: calc(6vh + 1vw); 
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
 }
 
 .div-header{
-    width: 95vw;
-    height: 7vh;
+    width: calc(85vw + 20vh);
+    height: calc(7vh + 1vw); 
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .icon{
-    width: 1vw;
-    height: 2vh;
+    width: calc(0.5vw + 1vh);
+    height: calc(1vh + 0.5vw); 
 }
 
 .logo{
-    width: 7vw;
-    height: 2vh;
+    width: calc(6.3vw + 4vh);
+    height: calc(0.3vh + 1vw); 
 }
 
 .icons-links{
-    width: 40vw;
-    height: 7vh;
+    width: calc(30vw + 20vh);
+    height: calc(0.3vh + 1vw); 
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -45,7 +46,7 @@ header{
 
 .icon-dop{
     display: flex;
-    gap: 0.5vw;
+    gap: calc(0.3vh + 0.3vw); 
     align-items: center;
 }
 
@@ -57,27 +58,27 @@ header{
 }
 
 .div-logo{
-    width: 7vw;
-    height: 7vh;
+    width: calc(6vw + 6vh);
+    height: calc(0.3vh + 1vw); 
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
 .logout-button{
-    width: 4.5vw;
-    height: 4vh;
+    width: calc(3.5vw + 3vh);
+    height: calc(2.5vh + 1vw); 
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     background-color: #FFFFFF;
     border: 0.1vw solid #543C52;
-    border-radius: 4vw;
+    border-radius: calc(2.5vw + 2.6vh) ;
 }
 
 .logout-icon{
-    width: 1vw;
-    height: 2vh;
+    width: calc(0.8vw + 0.7vh);
+    height: calc(1.2vh + 0.5vw); 
 }
 
 .logout-text{
@@ -87,7 +88,7 @@ header{
 }
 
 .padding-logout{
-    width: 6vw;
+    width: calc(4w + 2vh);
     display: flex;
     justify-content: center;
     align-items: center;

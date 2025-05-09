@@ -11,31 +11,44 @@
 
 {% block content %} 
     <div class="center-div">
-        <form class="form-login">
-            <div class="dop-between">
-                <h1 class="login-text">Аутентифікація</h1>
-                <div class = "data-login">
-    
-                    <div class="center-data">
-                        <p class="text-data">Введіть ім'я</p>
-                        <input class = "data-input" type = "text">
-                    </div>
-    
-                    <div class="center-data">
-                        <p class="text-data">Введіть email</p>
-                        <input class = "data-input" type = "text">
-                    </div>
-    
-                    <div class="center-data">
-                        <p class="text-data">Введіть пароль</p>
-                        <input class = "data-input" type = "text">
-                    </div>
-    
+        <form class="form-register">
+            <div class="links-div">
+                <a href="/user/registration" class="reg-link">Рєєстрація</a>
+                <a href="/user/login" class="login-link">Авторизація</a>
+            </div>
+            
+            <p class="join-text">Раді тебе знову бачити!</p>
+            <div class = "data-login">
+
+                <div class="center-data noimg">
+                    <p class="text-data">Ім'я</p>
+                    <input class = "data-input noimg" type = "text" placeholder="Введи ім'я">
                 </div>
-                <button class="login-button">Аутентифікуватися</button>
-                <p class="qrcode-redirect">Більш швидкий спосіб аутентифікуватися - <a href="/user/user_qrcode">qrcode</a></p>
+
+                <div class="center-data noimg">
+                    <p class="text-data">Електронна пошта</p>
+                    <input class = "data-input noimg" type = "text" placeholder="you@example.com">
+                </div>
+
+                <div class="center-data">
+                    <p class="text-data">Пароль</p>
+                    <div class="input-eye">
+                        <input class = "data-input img" type = "text" placeholder="Введи пароль">
+                        <button class="button-eye" id="eyeButton">
+                            <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
+                        </button>
+                    </div>
+                    
+                </div>
+
+               
+            </div>
+            <button class="reg-button">Увійти</button>
+            <div class="join-qrcode-div">
+                <p class="join-qrcode">Або увійдіть за допомогою QR-коду </p>
             </div>
            
+            <img src="{% static 'images/qrcode_login.png' %}" alt="" class="qrcode-img">
         </form>
     </div>
 {% endblock %}
