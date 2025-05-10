@@ -6,7 +6,10 @@
 body{
     background-color: #e9e5ee;
     margin: 0;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-image: url('/static/images/background.png');
     background-repeat: no-repeat;
     background-position: calc(100vw - 52vw) 23vh;
@@ -18,8 +21,8 @@ body{
 }
 
 .center-div{
-    width: calc(100vw + 1vh);
-    height: calc(100vh + 1vw); 
+    width: 100%;
+    height: 100%; 
     display: flex;
     justify-content:first baseline;
     align-items: center;
@@ -27,33 +30,26 @@ body{
 }
 
 .form-register{
-    /* width: 27vw;
-    height: 68vh; */
-    width: calc(27vw + 3vh);
-    height: calc(68vh + 1vw); 
     border-radius: calc(0.8vw + 0.8vh);
     background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    padding: calc(1.1vw + 2vh);
 }
 
 .data-reg{
-    /* width: 27vw;
-    height: 37vh; */
-    width: calc(27vw + 2vh);
-    height: calc(37vh + 1vw); 
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 2vh;
 }
 
 .reg-link{
     color: #070A1C;
-    font-size: calc(1.1vw + 0.9vh);
+    font-size: calc(0.8vw + 1.5vh);
     font-weight: bold;
     text-decoration: none;
     border-bottom: 0.3vh #070A1C solid
@@ -62,20 +58,17 @@ body{
 .login-link{
     color: #81818D;
     text-decoration: none;
-    font-size: calc(1.1vw + 0.9vh);
+    font-size: calc(0.8vw + 1.5vh);
     font-weight: bold;
 }
 
 .links-div{
-    /* width: 21vw; */
-    width: calc(21vw + 0.5vh);
-    height: calc(1vh + 1vw); 
-    flex-wrap: wrap;
+    width: calc(10.3vw + 18.4vh);
+    height: calc(2.2vh + 1.2vw); 
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-top: 3vh;
-
 }
 
 .join-text{
@@ -90,16 +83,14 @@ body{
 }
 
 .center-data{
-    /* height: 7.5vh; */
-    height: calc(5.5vh + 0.1vw); 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
 }
 
 .data-input{
-    width: 20vw;
-    height: 4.5vh;
+    width: calc(10.3vw + 18vh);
+    height: calc(1.9vh + 1vw);
     border: none;
 }
 
@@ -114,8 +105,6 @@ body{
 }
 
 .button-eye{
-    /* width: 1.7vw;
-    height: 2.5vh; */
     width: calc(0.8vw + 1vh);
     height: calc(0.6vh + 0.7vw); 
     border: none;

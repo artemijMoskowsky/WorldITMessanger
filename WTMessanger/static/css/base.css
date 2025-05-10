@@ -7,10 +7,14 @@ body{
     background-color: #FAF8FF;
     font-family: 'Nunito';
     overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header{
-    width: calc(100vw + 2vh);
+    width: 100%;
     height: calc(6vh + 1vw); 
     display: flex;
     justify-content: center;
