@@ -11,7 +11,8 @@
 
 {% block content %} 
     <div class="center-div">
-        <form class="form-register">
+        <form class="form-login">
+            
             <div class="links-div">
                 <a href="/user/registration" class="reg-link">Рєєстрація</a>
                 <a href="/user/login" class="login-link">Авторизація</a>
@@ -33,22 +34,16 @@
                 <div class="center-data">
                     <p class="text-data">Пароль</p>
                     <div class="input-eye">
-                        <input class = "data-input img" type = "text" placeholder="Введи пароль">
-                        <button class="button-eye" id="eyeButton">
-                            <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
-                        </button>
+                        <input class = "data-input-img" type = "text" placeholder="Введи пароль">
+                        <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
                     </div>
-                    
                 </div>
-
-               
             </div>
-            <button class="reg-button">Увійти</button>
-            <div class="join-qrcode-div">
-                <p class="join-qrcode">Або увійдіть за допомогою QR-коду </p>
-            </div>
-           
+            <button class="login-button">Увійти</button>
+            
+            <p class="join-qrcode">або увійдіть за допомогою QR-коду </p>
             <img src="{% static 'images/qrcode_login.png' %}" alt="" class="qrcode-img">
+
         </form>
     </div>
 {% endblock %}

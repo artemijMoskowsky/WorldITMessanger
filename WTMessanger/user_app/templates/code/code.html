@@ -11,14 +11,32 @@
 {% block content %} 
     <div class="center-div">
         <form class="user-code-form">
-            <p class="main-confirm">Підтвердження</p>
+            <p class="main-confirm">Підтвердження пошти</p>
+            <p class="send-text">Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</p>
 
             <div class="center-data">
-                <p class="text-data">Введіть код:</p>
-                <input class = "data-input" type = "text">
+                <p class="text-data">Код підтвердження</p>
+                <div class="all-codes">
+
+                    <div class="twice-code">
+                        <input type="number" class="number-code">
+                        <input type="number" class="number-code">
+                    </div>
+
+                    <div class="twice-code">
+                        <input type="number" class="number-code">
+                        <input type="number" class="number-code">
+                    </div>
+
+                    <div class="twice-code">
+                        <input type="number" class="number-code">
+                        <input type="number" class="number-code">
+                    </div>
+                </div>
             </div>
 
-            <button class="create-button">Створити акаунт</button>
+            <button class="create-button">Підтвердити</button>
+            <a href="{% url 'reg' %}" class="back-link">Назад</a>
         </form>
     </div>
 {% endblock %}
