@@ -43,10 +43,10 @@ class LoginUserView(LoginView):
     redirect_authenticated_user = True
     next_page = reverse_lazy('home')
 
-    def form_valid(self, form):
-        # Добавляем отладочную информацию
-        print(f"Аутентифицируем пользователя: {form.get_user()}")
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     # Добавляем отладочную информацию
+    #     print(f"Аутентифицируем пользователя: {form.get_user()}")
+    #     return super().form_valid(form)
 class CodeVerificationView(FormView):
     template_name = 'registration/code_verify.html'
     form_class = CodeVerificationForm
