@@ -1,50 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h2>Подтверждение email</h2>
+   <div class="container">
+        <h2>Підтвердження email</h2>
+        <p>Код підтвердження відправлено на {{ email }}</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+                <div class="alert-danger">
+                    {{ form.non_field_errors }}
                 </div>
-                <div class="card-body">
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-{{ message.tags }}">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    
-                    <p>Код подтверждения отправлен на <strong>{{ email }}</strong></p>
-                    
-                    <form method="post">
-                        {% csrf_token %}
-                        
-                        <div class="form-group">
-                            <label for="id_code">Код подтверждения:</label>
-                            {{ form.code }}
-                            {% if form.code.errors %}
-                                <div class="text-danger">
-                                    {{ form.code.errors }}
-                                </div>
-                            {% endif %}
-                        </div>
-                        
-                        <div class="d-flex justify-content-between mt-3">
-                            <button type="submit" class="btn btn-primary">
-                                Подтвердить
-                            </button>
-                            
-                            <a href="{% url 'register' %}" class="btn btn-outline-danger">
-                                Отмена
-                            </a>
-                        </div>
-                    </form>
-                </div>
+            {% endif %}
+
+            <div class="code-inputs">
+                {{ form.code_1 }}
+                {{ form.code_2 }}
+                {{ form.code_3 }}
+                {{ form.code_4 }}
+                {{ form.code_5 }}
+                {{ form.code_6 }}
             </div>
-        </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Підтвердити</button>
+        </form>
     </div>
-</div>
 {% endblock %}

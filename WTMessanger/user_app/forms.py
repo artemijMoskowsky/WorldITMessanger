@@ -8,68 +8,190 @@
 
 
 
+
+
 from django import forms
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
+from .models import WTUser 
 
 
-# Форма для реєстрації нового користувача, успадкована від ModelForm
 class RegistrationForm(forms.ModelForm):
-    # Поле для паролю з валідацією та стилізацією
     password = forms.CharField(
-        widget = forms.PasswordInput(attrs={'class': 'form-control'}),  # Використання PasswordInput для приховання паролю
-        label = 'Пароль',  # Назва поля
-        validators=[validate_password]  # Валідатор для перевірки складності паролю
+        widget = forms.PasswordInput(attrs = {'class': 'form-control'}),
+        label ='Пароль',
+        validators=[validate_password]
     )
     
-    # Поле для підтвердження паролю
     password2 = forms.CharField(
-        widget = forms.PasswordInput(attrs={'class': 'form-control'}),  # Аналогічний віджет
-        label = 'Підтвердження паролю'  # Назва поля
+        widget = forms.PasswordInput(attrs = {'class': 'form-control'}),
+        label = 'Підтвердження паролю'
     )
     
-    # Клас Meta визначає модель та додаткові налаштування форми
     class Meta:
-        model = User  # Використовуємо вбудовану модель User
-        fields = ['username', 'email', 'password']  # Поля, які відображаються у формі
+        model = WTUser  
+        fields = ['username', 'email', 'password']  
         widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),  # Стилізація поля username
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),  # Стилізація поля email
+            'username': forms.TextInput(attrs = {'class': 'form-control'}),
+            'email': forms.EmailInput(attrs = {'class': 'form-control'}),
         }
         labels = {
-            'username': "Ім'я користувача",  # Українська мітка для поля username
-            'email': 'Email'  # Мітка для поля email
+            'username': "Ім'я користувача",
+            'email': 'Email'
         }
     
-    # Метод для перевірки унікальності email
     def clean_email(self):
-        email = self.cleaned_data.get('email')  # Отримуємо email з форми
-        if User.objects.filter(email=email).exists():  # Перевіряємо, чи існує такий email у базі
-            raise ValidationError("Цей email вже зареєстрований!")  # Викидаємо помилку, якщо email зайнятий
-        return email  # Повертаємо email, якщо все добре
+        email = self.cleaned_data.get('email')
+        if WTUser.objects.filter(email=email).exists():  
+            raise ValidationError("Цей email вже зареєстрований!")
+        return email
     
-    # Загальний метод для перевірки форми 
     def clean(self):
-        cleaned_data = super().clean()  # Отримуємо "очищені" дані форми
-        password = cleaned_data.get('password')  # Отримуємо пароль
-        password2 = cleaned_data.get('password2')  # Отримуємо підтвердження паролю
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password2 = cleaned_data.get('password2')
         
-        # Перевіряємо, чи паролі співпадають
         if password and password2 and password != password2:
-            self.add_error('password2', 'Паролі не співпадають')  # Додаємо помилку до поля password2
+            self.add_error('password2', 'Паролі не співпадають')
         
-        return cleaned_data  # Повертаємо дані форми
+        return cleaned_data
 
 
-# Форма для введення коду підтвердження (email верифікації)
-class CodeVerificationForm(forms.Form):
-    code = forms.CharField(
-        label = 'Код підтвердження',  # Назва поля
-        max_length = 6,  # Максимальна довжина коду
-        min_length = 6,  # Мінімальна довжина коду
-        widget = forms.TextInput(attrs={
-            'class': 'form-control',  # Стилізація поля
-            'placeholder': 'Введіть шестизначний код'  # Підказка для користувача
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Логин или Email",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'autocomplete': 'username'
         })
     )
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        if username and password:
+            # Сначала пробуем стандартную аутентификацию
+            self.user_cache = authenticate(
+                request=self.request,
+                username=username,
+                password=password
+            )
+
+            # Если не получилось, пробуем найти по email
+            if self.user_cache is None and '@' in username:
+                try:
+                    user = WTUser.objects.get(email=username)
+                    self.user_cache = authenticate(
+                        request=self.request,
+                        username=user.username,
+                        password=password
+                    )
+                except WTUser.DoesNotExist:
+                    pass
+
+            if self.user_cache is None:
+                raise forms.ValidationError(
+                    "Неверные учетные данные. Проверьте логин/email и пароль."
+                )
+            elif not self.user_cache.is_active:
+                raise forms.ValidationError(
+                    "Аккаунт не активирован. Проверьте email для подтверждения."
+                )
+
+        return self.cleaned_data
+
+class CodeVerificationForm(forms.Form):
+    code_1 = forms.CharField(
+        label='',
+        max_length = 1,
+        min_length = 1,
+        widget=forms.TextInput(attrs = {
+            'class': 'form-control digit-input',
+            'placeholder': '',
+            'maxlength': '1',
+            'autocomplete': 'off'
+        })
+    )
+    code_2 = forms.CharField(
+        label = '',
+        max_length = 1,
+        min_length = 1,
+        widget=forms.TextInput(attrs = {
+            'class': 'form-control digit-input',
+            'placeholder': '',
+            'maxlength': '1',
+            'autocomplete': 'off'
+        })
+    )
+    code_3 = forms.CharField(
+        label = '',
+        max_length = 1,
+        min_length = 1,
+        widget = forms.TextInput(attrs = {
+            'class': 'form-control digit-input',
+            'placeholder': '',
+            'maxlength': '1',
+            'autocomplete': 'off'
+        })
+    )
+    code_4 = forms.CharField(
+        label = '',
+        max_length = 1,
+        min_length = 1,
+        widget=forms.TextInput(attrs = {
+            'class': 'form-control digit-input',
+            'placeholder': '',
+            'maxlength': '1',
+            'autocomplete': 'off'
+        })
+    )
+    code_5 = forms.CharField(
+        label = '',
+        max_length = 1,
+        min_length = 1,
+        widget = forms.TextInput(attrs = {
+            'class': 'form-control digit-input',
+            'placeholder': '',
+            'maxlength': '1',
+            'autocomplete': 'off'
+        })
+    )
+    code_6 = forms.CharField(
+        label = '',
+        max_length = 1,
+        min_length = 1,
+        widget = forms.TextInput(attrs = {
+            'class': 'form-control digit-input',
+            'placeholder': '',
+            'maxlength': '1',
+            'autocomplete': 'off'
+        })
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        code_parts = [
+            cleaned_data.get('code_1'),
+            cleaned_data.get('code_2'),
+            cleaned_data.get('code_3'),
+            cleaned_data.get('code_4'),
+            cleaned_data.get('code_5'),
+            cleaned_data.get('code_6')
+        ]
+        full_code = ''.join(code_parts)
+        
+        if None in code_parts or '' in code_parts:
+            raise forms.ValidationError("Усі поля мають бути заповнені")
+        
+        if not full_code.isdigit():
+            raise forms.ValidationError("Код повинен містити лише цифри")
+        
+        if len(full_code) != 6:
+            raise forms.ValidationError("Код має складатися із 6 цифр")
+        
+        cleaned_data['full_code'] = full_code
+        
+        return cleaned_data
