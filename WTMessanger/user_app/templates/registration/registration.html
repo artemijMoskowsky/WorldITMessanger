@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Registration page {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+{% endblock %}
+
+
+{% block content %} 
+    <div class="center-div">
+        <form class="form-register" method="post">
+            {% csrf_token %}
+            
+            <div class="links-div">
+                <a href="/user/registration" class="reg-link">Рєєстрація</a>
+                <a href="/user/login" class="login-link">Авторизація</a>
+            </div>
+            
+            <p class="join-text">Приєднуйся до World IT</p>
+            <div class = "data-reg">
+
+                <div class="center-data noimg">
+                    <p class="text-data">Ім'я</p>
+                    {{ form.username.errors }}
+                    {{ form.username }}
+                </div>
+
+                <div class="center-data noimg">
+                    <p class="text-data">Електронна пошта</p>
+                    {{ form.email.errors }}
+                    {{ form.email }}
+                </div>
+
+                <div class="center-data">
+                    <p class="text-data">Пароль</p>
+                    {{ form.password.errors }}
+                    <div class="input-eye">
+                        {{ form.password }}
+                        <button class="button-eye" id="eyeButton">
+                            <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
+                        </button>
+                    </div>
+                    
+                </div>
+
+                <div class="center-data">
+                    <p class="text-data">Підтверди пароль</p>
+                    {{ form.password2.errors }}
+                     <div class="input-eye">
+                        {{ form.password2 }}
+                        <button class="button-eye" id="eyeButton">
+                            <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <button class="reg-button">Створити акаунт</button>
+        </form>
+    </div>
+{% endblock %}

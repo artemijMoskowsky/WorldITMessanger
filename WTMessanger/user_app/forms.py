@@ -20,13 +20,13 @@ from .models import WTUser
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(
-        widget = forms.PasswordInput(attrs = {'class': 'form-control'}),
+        widget = forms.PasswordInput(attrs = {'class': 'data-input img'}),
         label ='Пароль',
         validators=[validate_password]
     )
     
     password2 = forms.CharField(
-        widget = forms.PasswordInput(attrs = {'class': 'form-control'}),
+        widget = forms.PasswordInput(attrs = {'class': 'data-input img'}),
         label = 'Підтвердження паролю'
     )
     
@@ -34,8 +34,8 @@ class RegistrationForm(forms.ModelForm):
         model = WTUser  
         fields = ['username', 'email', 'password']  
         widgets = {
-            'username': forms.TextInput(attrs = {'class': 'form-control'}),
-            'email': forms.EmailInput(attrs = {'class': 'form-control'}),
+            'username': forms.TextInput(attrs = {'class': 'data-input noimg'}),
+            'email': forms.EmailInput(attrs = {'class': 'data-input noimg'}),
         }
         labels = {
             'username': "Ім'я користувача",
@@ -60,13 +60,18 @@ class RegistrationForm(forms.ModelForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(
-        label="Логин или Email",
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'autocomplete': 'username'
-        })
-    )
+    # username = forms.CharField(
+    #     label="Логин или Email",
+    #     widget=forms.TextInput(attrs={
+    #         'class': 'form-control',
+    #         'autocomplete': 'username'
+    #     })
+    # )
+    def __init__(self, request = ..., *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        # self.fields["username"].label = "Логин или Email"
+        self.fields["username"].widget.attrs.update({"class": "data-input noimg"})
+        self.fields["password"].widget.attrs.update({"class": "data-input img"})
 
     def clean_username(self):
         username = self.cleaned_data.get('username')

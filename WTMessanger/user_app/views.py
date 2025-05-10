@@ -10,7 +10,7 @@ from django.contrib.auth.views import LoginView
 import random, string 
 
 class RegistrationView(FormView):
-    template_name = 'registration/register.html'
+    template_name = 'registration/registration.html'
     form_class = RegistrationForm
     success_url = reverse_lazy('register-verify')
     
@@ -41,7 +41,7 @@ class LoginUserView(LoginView):
     template_name = 'login/login.html'
     authentication_form = LoginForm
     redirect_authenticated_user = True
-    next_page = reverse_lazy('home')
+    next_page = reverse_lazy('core')
 
     # def form_valid(self, form):
     #     # Добавляем отладочную информацию
@@ -50,7 +50,7 @@ class LoginUserView(LoginView):
 class CodeVerificationView(FormView):
     template_name = 'registration/code_verify.html'
     form_class = CodeVerificationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('core')
     
     def dispatch(self, request, *args, **kwargs):
         if 'registration_data' not in request.session:
