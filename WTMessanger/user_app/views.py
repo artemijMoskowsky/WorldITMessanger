@@ -48,7 +48,7 @@ class LoginUserView(LoginView):
     #     print(f"Аутентифицируем пользователя: {form.get_user()}")
     #     return super().form_valid(form)
 class CodeVerificationView(FormView):
-    template_name = 'registration/code_verify.html'
+    template_name = 'code/code.html'
     form_class = CodeVerificationForm
     success_url = reverse_lazy('core')
     

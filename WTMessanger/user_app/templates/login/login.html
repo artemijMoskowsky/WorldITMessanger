@@ -1,7 +1,4 @@
 {% extends "base.html" %}
-
-
-
 {% load static %}
 
 {% block title %} Login page {% endblock %}
@@ -14,11 +11,11 @@
 
 {% block content %} 
     <div class="center-div">
-        <form class="form-register" method="post">
+        <form class="form-login" method="post">
             {% csrf_token %}
             <div class="links-div">
-                <a href="{% url 'register' %}" class="reg-link">Рєєстрація</a>
-                <a href="{% url 'login' %}" class="login-link">Авторизація</a>
+                <a href="/user/register" class="reg-link">Рєєстрація</a>
+                <a href="/user/login" class="login-link">Авторизація</a>
             </div>
             
             <p class="join-text">Раді тебе знову бачити!</p>
@@ -35,21 +32,15 @@
                     {{ form.password.errors }}
                     <div class="input-eye">
                         {{ form.password }}
-                        <button class="button-eye" id="eyeButton">
-                            <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
-                        </button>
+                        <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
                     </div>
-                    
                 </div>
-
-               
             </div>
-            <button class="reg-button">Увійти</button>
-            <div class="join-qrcode-div">
-                <p class="join-qrcode">Або увійдіть за допомогою QR-коду </p>
-            </div>
-           
+            <button class="login-button">Увійти</button>
+            
+            <p class="join-qrcode">або увійдіть за допомогою QR-коду </p>
             <img src="{% static 'images/qrcode_login.png' %}" alt="" class="qrcode-img">
+
         </form>
     </div>
 {% endblock %}

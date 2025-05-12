@@ -93,7 +93,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget=forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -104,7 +104,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget=forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -115,7 +115,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget = forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -126,7 +126,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget=forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -137,7 +137,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget = forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -148,7 +148,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget = forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
