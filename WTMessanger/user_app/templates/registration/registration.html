@@ -11,10 +11,11 @@
 
 {% block content %} 
     <div class="center-div">
-        <form class="form-register">
+        <form class="form-register" method="post">
+            {% csrf_token %}
             
             <div class="links-div">
-                <a href="/user/registration" class="reg-link">Рєєстрація</a>
+                <a href="/user/register" class="reg-link">Рєєстрація</a>
                 <a href="/user/login" class="login-link">Авторизація</a>
             </div>
             
@@ -23,26 +24,30 @@
 
                 <div class="center-data noimg">
                     <p class="text-data">Ім'я</p>
-                    <input class = "data-input noimg" type = "text" placeholder="Введи ім'я">
+                    {{ form.username.errors }}
+                    {{ form.username }}
                 </div>
 
                 <div class="center-data noimg">
                     <p class="text-data">Електронна пошта</p>
-                    <input class = "data-input noimg" type = "text" placeholder="you@example.com">
+                    {{ form.email.errors }}
+                    {{ form.email }}
                 </div>
 
                 <div class="center-data">
                     <p class="text-data">Пароль</p>
+                    {{ form.password.errors }}
                     <div class="input-eye">
-                        <input class = "data-input-img" type = "text" placeholder="Введи пароль">
+                        {{ form.password }}
                         <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
                     </div>
                 </div>
 
                 <div class="center-data">
                     <p class="text-data">Підтверди пароль</p>
+                    {{ form.password2.errors }}
                      <div class="input-eye">
-                        <input class = "data-input-img" type = "text" placeholder="Повтори пароль">
+                        {{ form.password2 }}
                         <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
                     </div>
                 </div>

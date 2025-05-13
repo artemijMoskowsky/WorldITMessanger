@@ -20,6 +20,6 @@ from core_app.views import CoreView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', CoreView.as_view(), name = 'core'),
+    path('', include('core_app.urls')),
     path('user/', include('user_app.urls'))
 ]

@@ -10,7 +10,8 @@
 
 {% block content %} 
     <div class="center-div">
-        <form class="user-code-form">
+        <form class="user-code-form" method="post">
+            {% csrf_token %}
             <p class="main-confirm">Підтвердження пошти</p>
             <p class="send-text">Ми надіслали 6-значний код на вашу пошту (you@example.com). Введіть його нижче, щоб підтвердити акаунт</p>
 
@@ -19,24 +20,24 @@
                 <div class="all-codes">
 
                     <div class="twice-code">
-                        <input type="number" class="number-code">
-                        <input type="number" class="number-code">
+                        {{ form.code_1 }}
+                        {{ form.code_2 }}
                     </div>
 
                     <div class="twice-code">
-                        <input type="number" class="number-code">
-                        <input type="number" class="number-code">
+                        {{ form.code_3 }}
+                        {{ form.code_4 }}
                     </div>
 
                     <div class="twice-code">
-                        <input type="number" class="number-code">
-                        <input type="number" class="number-code">
+                        {{ form.code_5 }}
+                        {{ form.code_6 }}
                     </div>
                 </div>
             </div>
 
             <button class="create-button">Підтвердити</button>
-            <a href="{% url 'reg' %}" class="back-link">Назад</a>
+            <a href="{% url 'register' %}" class="back-link">Назад</a>
         </form>
     </div>
 {% endblock %}

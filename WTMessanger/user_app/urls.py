@@ -1,9 +1,27 @@
 from django.urls import path
-from .views import RegistrationView, LoginView, QrcodeView, CodeView
+# Імпорт Клаі з текучого додатку
+from .views import RegistrationView, CodeVerificationView, LoginUserView
 
+# Визначаємо список URL-шляхів (маршрутів) додатку
 urlpatterns = [
-    path("registration/", RegistrationView.as_view(), name = 'reg'),
-    path("login/", LoginView.as_view(), name = 'login'),
-    path("user_qrcode/", QrcodeView.as_view(), name = 'qrcode'),
-    path("user_code/", CodeView.as_view(), name = 'code')
+    # Маршрут для сторінки реєстрації
+    path(
+        'register/',  # URL-адреса
+        RegistrationView.as_view(),  # View-клас, що обробляє цей маршрут
+        name='register'  # Унікальне ім'я маршруту для зворотних посилань
+    ),
+    
+    # Маршрут для сторінки верифікації коду після реєстрації
+    path(
+        'register/verify/',  # URL-адреса (відносний шлях)
+        CodeVerificationView.as_view(),  # View-клас для верифікації
+        name='register-verify'  # Ім'я маршруту
+    ),
+    
+    # Маршрут для сторінки входу (авторизації)
+    path(
+        'login/',  # URL-адреса
+        LoginUserView.as_view(),  # View-клас для авторизації
+        name='login'  # Ім'я маршруту
+    ),
 ]

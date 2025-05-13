@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div class="container">
+        <h2>Підтвердження email</h2>
+        <p>Код підтвердження відправлено на {{ email }}</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+                <div class="alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="code-inputs">
+                {{ form.code_1 }}
+                {{ form.code_2 }}
+                {{ form.code_3 }}
+                {{ form.code_4 }}
+                {{ form.code_5 }}
+                {{ form.code_6 }}
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Підтвердити</button>
+        </form>
+    </div>
+{% endblock %}
