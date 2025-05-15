@@ -1,13 +1,15 @@
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib import messages
-from .forms import RegistrationForm, CodeVerificationForm, LoginForm
-from .models import WTUser
-from django.contrib.auth.views import LoginView
+from .forms import RegistrationForm, CodeVerificationForm, LoginForm, WTUserPostForm
+from .models import WTUser, WTUser_Post
 import random, string 
+
 
 class RegistrationView(FormView):
     template_name = 'registration/register.html'
@@ -88,3 +90,13 @@ class CodeVerificationView(FormView):
         context['email'] = self.request.session['registration_data']['email']
         context['code_range'] = range(1, 7)
         return context
+    
+class CreatePostView(LoginRequiredMixin, CreateView):
+    model = WTUser_Post
+    form_class = WTUserPostForm
+    template_name = 'create_post/create_post.html'
+    success_url = reverse_lazy('core')  
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

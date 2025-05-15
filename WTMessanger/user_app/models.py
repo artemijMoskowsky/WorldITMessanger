@@ -5,23 +5,16 @@ from django.contrib.auth.models import AbstractUser
 
 
 class WTUser(AbstractUser):
-    username = models.CharField(
-        "Ім'я користувача",
-        max_length = 150,
-        unique = True,
-        help_text = "Обов'язкове поле. Не більше ніж 150 символів. Тільки літери, цифри та @/./+/-/_.",
-        error_messages = {
-            'unique': "Користувач із таким ім'ям вже існує.",
-        },
-    ) # Сносить при обновлении модели
-    
-    email = models.EmailField('Email', unique=True)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    def __str__(self):
+        return f"Name - {self.username}\nEmail - {self.email}"
 
-    class Meta:
-        verbose_name = 'Користувач'
-        verbose_name_plural = 'Користувачі'
+class WTUser_Post(models.Model):
+    author = models.ForeignKey(WTUser, on_delete=models.CASCADE, related_name='posts')
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Name - {self.username}\n Email - {self.email}"
+        return self.title
