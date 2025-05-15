@@ -15,7 +15,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
-from .models import WTUser 
+from .models import WTUser, WTUser_Post
 
 
 class RegistrationForm(forms.ModelForm):
@@ -179,3 +179,24 @@ class CodeVerificationForm(forms.Form):
         cleaned_data['full_code'] = full_code
         
         return cleaned_data
+    
+    
+    
+
+class WTUserPostForm(forms.ModelForm):
+    class Meta:
+        model = WTUser_Post
+        fields = ['title', 'content', 'image']
+        widgets = {
+            'title': forms.TextInput(attrs = {
+                'class': 'form-control', 
+                'placeholder': 'Заголовок поста'
+            }),
+            'content': forms.Textarea(attrs={
+                'class': 'form-control', 
+                'placeholder': 'Текст публікації'
+            }),
+            'image': forms.ClearableFileInput(attrs = {
+                'class': 'form-control'
+            }),
+        }

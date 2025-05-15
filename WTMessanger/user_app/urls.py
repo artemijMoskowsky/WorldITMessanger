@@ -1,6 +1,6 @@
 from django.urls import path
 # Імпорт Клаі з текучого додатку
-from .views import RegistrationView, CodeVerificationView, LoginUserView, UserLogoutView
+from .views import RegistrationView, CodeVerificationView, LoginUserView, UserLogoutView, CreatePostView
 
 # Визначаємо список URL-шляхів (маршрутів) додатку
 urlpatterns = [
@@ -28,5 +28,10 @@ urlpatterns = [
         'logout/',
         UserLogoutView.as_view(),
         name="logout"
+    ),
+    #  Маршрут для сторінки post_app (Створення постів)
+    path('create/',  # URL-адреса
+        CreatePostView.as_view(), # View-клас для створення постів
+        name = 'create_post' # Ім'я маршруту
     )
 ]
