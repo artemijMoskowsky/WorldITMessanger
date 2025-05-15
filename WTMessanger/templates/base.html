@@ -1,17 +1,72 @@
-<html>
+{% load static %}
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{% endblock title %}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% block link %}{% endblock  %}
-        {% comment %} <link rel="stylesheet" href=""> {% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+
+        {% block links %}
+        {% endblock links %}
     </head>
     <body>
+        <header>
+            <div class = 'div-header'>
+                <div class = 'div-logo'>
+                    <img class="logo" src="{% static 'images/logo.png' %}" alt="">
+                </div>
+    
+                <div class = 'icons-links'>
+                    <div class="icon-dop">
+                        <img class="icon" src="{% static 'images/House.png' %}" alt="">
+                        <a href="/" class = 'text-icons'>Головна</a>
+                    </div>
 
-        {% block content %}{% endblock %}
-        {% block script %}{% endblock %}
-        {% comment %} <script src="" async defer></script> {% endcomment %}
+                    <div class="icon-dop">
+                        <img class="icon" src="{% static 'images/publications.png' %}" alt="">
+                        <p class = 'text-icons'>Мої публікації</p>
+                    </div>
+                    
+                    <div class="icon-dop">
+                        <img class="icon" src="{% static 'images/friends.png' %}" alt="">
+                        <p class = 'text-icons'>Друзі</p>
+                    </div>
+
+                    <div class="icon-dop">
+                        <img class="icon" src="{% static 'images/chat.png' %}" alt="">
+                        <p class = 'text-icons'>Чати</p>
+                    </div>
+                    <div class="icon-dop">
+                        <img class="icon" src="{% static 'images/Setting.png' %}" alt="">
+                        <p class = 'text-icons'>Налаштування</p>
+                    </div>
+                    
+                    <div class="padding-logout">
+                        <button class = 'logout-button'>
+                            <img class="logout-icon" src="{% static 'images/exit.png' %}" alt="">
+                            <p class="logout-text">Вихід</p>
+                        </button>
+                    </div>
+                  
+                </div>
+    
+               
+
+                </div>
+            
+            
+
+        </header>
+
+
+
+        {% block content %}
+        
+        {% endblock content %}
+
+        {% block scripts %}
+        
+        {% endblock scripts %}
     </body>
 </html>

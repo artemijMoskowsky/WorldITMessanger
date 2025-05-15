@@ -20,13 +20,13 @@ from .models import WTUser, WTUser_Post
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(
-        widget = forms.PasswordInput(attrs = {'class': 'form-control'}),
+        widget = forms.PasswordInput(attrs = {'class': 'data-input img'}),
         label ='Пароль',
         validators=[validate_password]
     )
     
     password2 = forms.CharField(
-        widget = forms.PasswordInput(attrs = {'class': 'form-control'}),
+        widget = forms.PasswordInput(attrs = {'class': 'data-input img'}),
         label = 'Підтвердження паролю'
     )
     
@@ -34,8 +34,8 @@ class RegistrationForm(forms.ModelForm):
         model = WTUser  
         fields = ['username', 'email', 'password']  
         widgets = {
-            'username': forms.TextInput(attrs = {'class': 'form-control'}),
-            'email': forms.EmailInput(attrs = {'class': 'form-control'}),
+            'username': forms.TextInput(attrs = {'class': 'data-input noimg'}),
+            'email': forms.EmailInput(attrs = {'class': 'data-input noimg'}),
         }
         labels = {
             'username': "Ім'я користувача",
@@ -60,48 +60,32 @@ class RegistrationForm(forms.ModelForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(
-        label="Логин или Email",
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'autocomplete': 'username'
-        })
-    )
+    # username = forms.CharField(
+    #     label="Логин или Email",
+    #     widget=forms.TextInput(attrs={
+    #         'class': 'form-control',
+    #         'autocomplete': 'username'
+    #     })
+    # )
+    def __init__(self, request = ..., *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        # self.fields["username"].label = "Логин или Email"
+        self.fields["username"].widget.attrs.update({"class": "data-input noimg"})
+        self.fields["password"].widget.attrs.update({"class": "data-input img"})
 
-    def clean(self):
+    def clean_username(self):
         username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
+        try:
+            WTUser.objects.get(username = username)
+            return username
+        except:
+            try:
+                user = WTUser.objects.get(email = username)
+                return user.username
+            except:
+                raise ValidationError("Користувача с таким ім'ям або поштою не існує")
 
-        if username and password:
-            # Сначала пробуем стандартную аутентификацию
-            self.user_cache = authenticate(
-                request=self.request,
-                username=username,
-                password=password
-            )
-
-            # Если не получилось, пробуем найти по email
-            if self.user_cache is None and '@' in username:
-                try:
-                    user = WTUser.objects.get(email=username)
-                    self.user_cache = authenticate(
-                        request=self.request,
-                        username=user.username,
-                        password=password
-                    )
-                except WTUser.DoesNotExist:
-                    pass
-
-            if self.user_cache is None:
-                raise forms.ValidationError(
-                    "Неверные учетные данные. Проверьте логин/email и пароль."
-                )
-            elif not self.user_cache.is_active:
-                raise forms.ValidationError(
-                    "Аккаунт не активирован. Проверьте email для подтверждения."
-                )
-
-        return self.cleaned_data
+        # return self.cleaned_data
 
 class CodeVerificationForm(forms.Form):
     code_1 = forms.CharField(
@@ -109,7 +93,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget=forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -120,7 +104,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget=forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -131,7 +115,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget = forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -142,7 +126,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget=forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -153,7 +137,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget = forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'
@@ -164,7 +148,7 @@ class CodeVerificationForm(forms.Form):
         max_length = 1,
         min_length = 1,
         widget = forms.TextInput(attrs = {
-            'class': 'form-control digit-input',
+            'class': 'number-code',
             'placeholder': '',
             'maxlength': '1',
             'autocomplete': 'off'

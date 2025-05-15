@@ -1,30 +1,37 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Login page {% endblock %}
+{% block title %} Registration page {% endblock %}
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 {% endblock %}
 
 
 {% block content %} 
     <div class="center-div">
-        <form class="form-login" method="post">
+        <form class="form-register" method="post">
             {% csrf_token %}
+            
             <div class="links-div">
                 <a href="/user/register" class="reg-link">Рєєстрація</a>
                 <a href="/user/login" class="login-link">Авторизація</a>
             </div>
             
-            <p class="join-text">Раді тебе знову бачити!</p>
-            <div class = "data-login">
+            <p class="join-text">Приєднуйся до World IT</p>
+            <div class = "data-reg">
 
                 <div class="center-data noimg">
                     <p class="text-data">Ім'я</p>
                     {{ form.username.errors }}
                     {{ form.username }}
+                </div>
+
+                <div class="center-data noimg">
+                    <p class="text-data">Електронна пошта</p>
+                    {{ form.email.errors }}
+                    {{ form.email }}
                 </div>
 
                 <div class="center-data">
@@ -34,13 +41,19 @@
                         {{ form.password }}
                         <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
                     </div>
+                    
+                </div>
+
+                <div class="center-data">
+                    <p class="text-data">Підтверди пароль</p>
+                    {{ form.password2.errors }}
+                     <div class="input-eye">
+                        {{ form.password2 }}
+                        <img src="{% static 'images/eye.png' %}" alt="" class="eye-img" >
+                    </div>
                 </div>
             </div>
-            <button class="login-button">Увійти</button>
-            
-            <p class="join-qrcode">або увійдіть за допомогою QR-коду </p>
-            <img src="{% static 'images/qrcode_login.png' %}" alt="" class="qrcode-img">
-
+            <button class="reg-button">Створити акаунт</button>
         </form>
     </div>
 {% endblock %}
