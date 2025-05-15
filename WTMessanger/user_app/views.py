@@ -6,7 +6,7 @@ from django.contrib.auth import login
 from django.contrib import messages
 from .forms import RegistrationForm, CodeVerificationForm, LoginForm
 from .models import WTUser
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 import random, string 
 
 class RegistrationView(FormView):
@@ -88,3 +88,6 @@ class CodeVerificationView(FormView):
         context['email'] = self.request.session['registration_data']['email']
         context['code_range'] = range(1, 7)
         return context
+
+class UserLogoutView(LogoutView):
+    next_page=reverse_lazy("core")

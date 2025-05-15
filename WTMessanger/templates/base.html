@@ -42,12 +42,13 @@
                         <p class = 'text-icons'>Налаштування</p>
                     </div>
                     
-                    <div class="padding-logout">
+                    <form class="padding-logout" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
                         <button class = 'logout-button'>
                             <img class="logout-icon" src="{% static 'images/exit.png' %}" alt="">
                             <p class="logout-text">Вихід</p>
                         </button>
-                    </div>
+                    </form>
                   
                 </div>
     
