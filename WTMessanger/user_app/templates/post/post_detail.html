@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="post-detail">
+        <h1>{{ post.title }}</h1>
+
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Изображение поста" style="max-width: 100%; height: auto;">
+        {% endif %}
+
+        <p>{{ post.content }}</p>
+
+        <p>Автор: {{ post.author.username }}</p>
+        <p>Опубликовано: {{ post.created_at }}</p>
+        <p>Обновлено: {{ post.updated_at }}</p>
+
+        {% if request.user == post.author %}
+            <a href="{% url 'post-edit' post.pk %}" class="btn btn-warning">Редагувати</a>
+            <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Видалити</a>
+        {% endif %}
+
+        <a href="{% url 'post' %}" class="btn btn-secondary">← Назад до постів</a>
+    </div>
+{% endblock %}

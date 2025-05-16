@@ -1,6 +1,7 @@
 from django.views.generic.edit import FormView, CreateView
+from django.views.generic import UpdateView, DeleteView, ListView, DetailView
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.shortcuts import redirect
@@ -90,13 +91,44 @@ class CodeVerificationView(FormView):
         context['email'] = self.request.session['registration_data']['email']
         context['code_range'] = range(1, 7)
         return context
+  
+  
+class PostListView(ListView):
+    model = WTUser_Post
+    template_name = 'post/post.html'  
+    context_object_name = 'posts'     
+    
+class PostDetailView(DetailView):
+    model = WTUser_Post
+    template_name = 'post/post_detail.html'  
+    context_object_name = 'post'        
     
 class CreatePostView(LoginRequiredMixin, CreateView):
     model = WTUser_Post
     form_class = WTUserPostForm
-    template_name = 'create_post/create_post.html'
+    template_name = 'post/create_post.html'
     success_url = reverse_lazy('core')  
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class UpdatePostView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = WTUser_Post
+    form_class = WTUserPostForm
+    template_name = 'post/edit_post.html'
+    success_url = reverse_lazy('core')
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = WTUser_Post
+    form_class = WTUserPostForm
+    template_name = 'post/delete_post.html'
+    success_url = reverse_lazy('core')
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author

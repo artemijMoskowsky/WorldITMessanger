@@ -1,0 +1,5 @@
+<form method="post">{% csrf_token %}
+  <p>Точно видалити "{{ object.title }}"?</p>
+  <button type="submit">Так</button>
+  <a href="{% url 'core' %}">Ні</a>
+</form>

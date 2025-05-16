@@ -1,6 +1,8 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 # Імпорт Клаі з текучого додатку
-from .views import RegistrationView, CodeVerificationView, LoginUserView, CreatePostView
+from .views import RegistrationView, CodeVerificationView, LoginUserView, CreatePostView, UpdatePostView, DeletePostView, PostListView, PostDetailView
 
 # Визначаємо список URL-шляхів (маршрутів) додатку
 urlpatterns = [
@@ -25,9 +27,13 @@ urlpatterns = [
         name='login'  # Ім'я маршруту
     ),
     #  Маршрут для сторінки post_app (Створення постів)
-    path('create/',  # URL-адреса
+    path('create_post/',  # URL-адреса
         CreatePostView.as_view(), # View-клас для створення постів
         name = 'create_post' # Ім'я маршруту
     ),
+    path('post/', PostListView.as_view(), name = 'post'),
+    path('post/<int:pk>/', PostDetailView.as_view(), name = 'post-detail'),
+    path('post/<int:pk>/edit/', UpdatePostView.as_view(), name = 'post-edit'),
+    path('post/<int:pk>/delete/', DeletePostView.as_view(), name = 'post-delete'),
 
-]
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
