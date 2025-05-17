@@ -1,3 +1,205 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block content %} core {% endblock %}
+{% block title %} Core page {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/core.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+{% endblock %}
+
+{% block content %}
+    <div class="center-div">
+        <div class="biography-div">
+            <div class="profile-div">
+                <img src="{% static 'images/profile.png' %}" alt="" class="img-profile">
+                <p class="nickname">Lina Li</p>
+                <p class="nickname-second">@thelili</p>
+                <div class="extra-profile">
+                    <div class="cell">
+                        <p class="profile-text-1">566</p>
+                        <p class="profile-text-2">Дописи</p>
+                    </div>
+                    <div class="cell center">
+                        <p class="profile-text-1">12.1K</p>
+                        <p class="profile-text-2">Читачі</p>
+                    </div>
+                    <div class="cell">
+                        <p class="profile-text-1">222</p>
+                        <p class="profile-text-2">Друзі</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="requests-div">
+                <div class="head-requests">
+                    <div class="first-head">
+                        <img src="{% static 'images/people.png' %}" alt="" class="people-img">
+                        <p class="requests-text" >Запити</p>
+                    </div>
+                    <button class="see-all-button">Дивитись всі</button>
+                </div>
+
+                <div class="other-profile">
+                    <img src="{% static 'images/avatar.png' %}" alt="" class="avatar-img">
+                    <div class="text-avatar">
+                        <p class="name">Yehor Aung</p>
+                        <p class="subscribers">4.3к підписників</p>
+                    </div>
+                </div>
+                 <div class="other-profile">
+                    <img src="{% static 'images/avatar.png' %}" alt="" class="avatar-img">
+                    <div class="text-avatar">
+                        <p class="name">Yehor Aung</p>
+                        <p class="subscribers">4.3к підписників</p>
+                    </div>
+                </div>
+                 <div class="other-profile">
+                    <img src="{% static 'images/avatar.png' %}" alt="" class="avatar-img">
+                    <div class="text-avatar">
+                        <p class="name">Yehor Aung</p>
+                        <p class="subscribers">4.3к підписників</p>
+                    </div>
+                </div>
+               
+            </div>
+
+
+            <div class="messages-div">
+                <div class="head-requests">
+                    <div class="first-head">
+                        <img src="{% static 'images/chat.png' %}" alt="" class="people-img">
+                        <p class="requests-text" >Повідомлення</p>
+                    </div>
+                    <button class="see-all-button">Дивитись всі</button>
+                </div>
+
+                <div class="other-profile">
+                    <img src="{% static 'images/avatar2.png' %}" alt="" class="avatar-img">
+                    <div class="text-avatar">
+                        <p class="name">Mona Lisa</p>
+                        <p class="subscribers">Привіт! Як справи?</p>
+                    </div>
+                </div>
+                 <div class="other-profile">
+                    <img src="{% static 'images/avatar2.png' %}" alt="" class="avatar-img">
+                    <div class="text-avatar">
+                        <p class="name">Mona Lisa</p>
+                        <p class="subscribers">Привіт!</p>
+                    </div>
+                </div>
+                 <div class="other-profile">
+                    <img src="{% static 'images/avatar2.png' %}" alt="" class="avatar-img">
+                    <div class="text-avatar">
+                        <p class="name">Mona Lisa</p>
+                        <p class="subscribers">Привіт!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="div-publications">
+            <div class="div-publications-first">
+                <input type="text" class="input-publications" placeholder="Текст публікації">
+                <div class="long-decor">
+                    <div class="extra-publications-first">
+                        <img src="{% static 'images/emoticon.png' %}" alt="" class="emoticon">
+                        <button class="go-decoration">Перейти до оформлення</button>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="main-publications">
+                <div class="message">
+                    <div class="header-message">
+                        <div class="main-head">
+                            <div class="icon-nick">
+                                <img src="{% static 'images/icon.png' %}" alt="" class="avatar-img">
+                                <p class="nick-user">X_AE_A-13</p>
+                            </div>
+                            
+                            <img src="{% static 'images/signature.png' %}" alt="" class="signature">
+                        </div>
+                        <img src="{% static 'images/settings.png' %}" alt="" class="settings-icon">
+                    </div>
+                    
+                    <div class="main-message">
+                        <div class="main-text-message">
+                             <p class="message-text">Інколи найкращі ідеї народжуються в тиші 🌿 Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                            <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                        </div>
+                       <div class="images-for-post">
+                            <img src="{% static 'images/img_post/image1.png' %}" alt="" class="img-post main">
+                            <img src="{% static 'images/img_post/image2.png' %}" alt="" class="img-post main">
+                            <img src="{% static 'images/img_post/image3.png' %}" alt="" class="img-post">
+                            <img src="{% static 'images/img_post/image4.png' %}" alt="" class="img-post">
+                            <img src="{% static 'images/img_post/image5.png' %}" alt="" class="img-post">
+                       </div>
+                       <div class="extra-for-post">
+                            <div class="like-div">
+                                <img src="{% static 'images/like.png' %}" alt="" class="like-img">
+                                <p class="like-text">120 Вподобань</p>
+                            </div>
+                            <div class="views-div">
+                                <img src="{% static 'images/eye.png' %}" alt="" class="views-img">
+                                <p class="views-text">890 Переглядів</p>
+                            </div>
+                       </div>
+
+                    </div>
+                </div>
+            <div class="message">
+                    <div class="header-message">
+                        <div class="main-head">
+                            <div class="icon-nick">
+                                <img src="{% static 'images/icon.png' %}" alt="" class="avatar-img">
+                                <p class="nick-user">X_AE_A-13</p>
+                            </div>
+                            
+                        </div>
+                        <img src="{% static 'images/settings.png' %}" alt="" class="settings-icon">
+                    </div>
+                    <div class="main-text-message">
+                        <p class="message-text">Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                        <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                    </div>
+            </div>
+
+             <div class="message">
+                    <div class="header-message">
+                        <div class="main-head">
+                            <div class="icon-nick">
+                                <img src="{% static 'images/icon.png' %}" alt="" class="avatar-img">
+                                <p class="nick-user">X_AE_A-13</p>
+                            </div>
+                            
+                        </div>
+                        <img src="{% static 'images/settings.png' %}" alt="" class="settings-icon">
+                    </div>
+                    <div class="main-text-message">
+                        <p class="message-text">Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                        <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                    </div>
+            </div>
+
+             <div class="message">
+                    <div class="header-message">
+                        <div class="main-head">
+                            <div class="icon-nick">
+                                <img src="{% static 'images/icon.png' %}" alt="" class="avatar-img">
+                                <p class="nick-user">X_AE_A-13</p>
+                            </div>
+                            
+                        </div>
+                        <img src="{% static 'images/settings.png' %}" alt="" class="settings-icon">
+                    </div>
+                    <div class="main-text-message">
+                        <p class="message-text">Природа, книга і спокій — усе, що потрібно, аби перезавантажитись.</p>
+                        <p class="tags">#відпочинок #натхнення #життя #природа #читання #спокій #гармонія</p>
+                    </div>
+            </div>
+            
+        </div>
+        
+    </div>
+{% endblock %}
